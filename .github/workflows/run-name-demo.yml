@@ -2,13 +2,27 @@ name: Build and Deploy Feature Branch
 
 on:
   workflow_dispatch:
-  pull_request:
-  push:
+    inputs:
+      region:
+        description: 'Select deployment region'
+        required: true
+        default: 'preprod-east'
+        type: choice
+        options:
+          - preprod-east
+          - preprod-west
+          - prod-east
+          - prod-west
 
-run-name: Build and Deploy Feature Branch ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+  pull_request:
+
+run-name: >
+  ${{ github.event_name == 'workflow_dispatch'
+      && format('Deploy Release tag {0} to {1}', github.ref_name, inputs.region)
+      || format('Build and Deploy Feature Branch {0}', github.head_ref) }}
 
 jobs:
-  demo:
+  build:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Demo workflow"
