@@ -1,0 +1,14 @@
+name: Build and Deploy Feature Branch
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+
+run-name: Build and Deploy Feature Branch ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Demo workflow"
