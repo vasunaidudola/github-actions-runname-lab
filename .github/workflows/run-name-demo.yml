@@ -1,12 +1,12 @@
-name: PR Workflow - Default Merge Ref
+name: PR Workflow - Clean Branch Name
 
 on:
   pull_request:
 
-run-name: Build and Deploy Feature Branch ${{ github.ref_name }}
+run-name: Build and Deploy Feature Branch ${{ github.head_ref }}
 
 jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "PR run showing merge ref"
+      - run: echo "PR run showing feature branch"
