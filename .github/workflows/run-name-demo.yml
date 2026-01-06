@@ -3,7 +3,7 @@ name: PR Workflow - Clean Branch Name
 on:
   pull_request:
 
-run-name: Build and Deploy – Feature Branch ${{ github.head_ref }} (PR #${{ github.event.pull_request.number }})
+run-name: Build and Deploy – Feature Branch ${{ github.head_ref }} (PR ${{ github.event.pull_request.number }})
  
 
 
