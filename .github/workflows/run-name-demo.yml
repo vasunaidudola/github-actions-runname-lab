@@ -6,7 +6,6 @@ on:
       region:
         description: 'Select deployment region'
         required: true
-        default: 'preprod-east'
         type: choice
         options:
           - preprod-east
@@ -22,7 +21,8 @@ run-name: >
       || format('Build and Deploy Feature Branch {0}', github.head_ref) }}
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Demo workflow"
+      - name: Demo step
+        run: echo "Workflow executed successfully"
