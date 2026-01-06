@@ -1,28 +1,12 @@
-name: Build and Deploy Feature Branch
+name: PR Workflow - Default Merge Ref
 
 on:
-  workflow_dispatch:
-    inputs:
-      region:
-        description: 'Select deployment region'
-        required: true
-        type: choice
-        options:
-          - preprod-east
-          - preprod-west
-          - prod-east
-          - prod-west
-
   pull_request:
 
-run-name: >
-  ${{ github.event_name == 'workflow_dispatch'
-      && format('Deploy Release tag {0} to {1}', github.ref_name, inputs.region)
-      || format('Build and Deploy Feature Branch {0}', github.head_ref) }}
+run-name: Build and Deploy Feature Branch ${{ github.ref_name }}
 
 jobs:
-  deploy:
+  demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Demo step
-        run: echo "Workflow executed successfully"
+      - run: echo "PR run showing merge ref"
